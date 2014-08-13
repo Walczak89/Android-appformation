@@ -4,11 +4,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 public class RssReader extends Activity {
 
-	TextView articleView;
+	WebView articleView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class RssReader extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_rss);
 
-		articleView = (TextView) findViewById(R.id.textViewArticle);
+		articleView = (WebView) findViewById(R.id.webViewArticle);
 
 		Bundle b = getIntent().getExtras();
 		String title = b.getString("chosenOne");
@@ -26,7 +26,7 @@ public class RssReader extends Activity {
 		ab.setTitle(title);
 		ab.setDisplayHomeAsUpEnabled(true);
 
-		articleView.setText(content);
+		articleView.loadData(content, "text/html; charset=utf-8","utf-8");
 	}
 
 	@Override
